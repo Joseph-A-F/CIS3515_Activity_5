@@ -1,25 +1,25 @@
 package edu.temple.inclassuiacvitivity
 
+import android.content.Context
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
+import kotlin.coroutines.CoroutineContext
 
-class TextSizeAdapter : BaseAdapter() {
+class TextSizeAdapter(private val items: Array<String>,private val context: Context) : BaseAdapter() {
 
-    override fun getCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getCount(): Int = items.size
+    override fun getItem(position: Int)= items[position]
 
-    override fun getItem(position: Int): Any {
-        TODO("Not yet implemented")
-    }
+    override fun getItemId(position: Int): Long = position.toLong()
 
-    override fun getItemId(position: Int): Long {
-        TODO("Not yet implemented")
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        TODO("Not yet implemented")
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+        return TextView(context).apply {
+            text = items[position];
+            setTextSize(TypedValue.COMPLEX_UNIT_SP,items[position].toFloat());
+        }
     }
 
 }
